@@ -77,6 +77,15 @@ package_table = function(i, descs)
     x = descs[[i]][field]
     names(x) = NULL
     
+    if (field == "Maintainer")
+    {
+      x = sub(x, pattern="<", replacement="&lt;")
+      x = sub(x, pattern=">", replacement="&gt;")
+    }
+    
+    if (grepl(x, pattern="(^https://|^http://)"))
+      x = paste0("<a href=\"", x, "\">", x, "</a>")
+    
     if (is.null(fieldname))
       fieldname = field
     
@@ -92,12 +101,12 @@ package_table = function(i, descs)
   tbl = append(tbl, "Maintainer")
   tbl = append(tbl, "Version")
   tbl = append(tbl, "License")
-  tbl = append(tbl, "BugReports")
-  tbl = append(tbl, "URL")
   tbl = append(tbl, "Depends")
   tbl = append(tbl, "Imports")
   tbl = append(tbl, "SystemRequirements")
-  tbl = append(tbl, "NeedsCompilation")
+  tbl = append(tbl, "NeedsCompilation", "Compiled?")
+  tbl = append(tbl, "URL")
+  tbl = append(tbl, "BugReports")
   
   mat_to_html_table(tbl)
 }
