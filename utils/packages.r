@@ -46,10 +46,23 @@ packages_table = function(descs)
   for (i in 1:nrow(tbl))
   {
     pkg = descs[[i]]["Package"]
-    tbl[i, 1] = paste0("<a href=\"packages/", pkg, ".html\">", pkg, "</a>")
+    tbl[i, 1] = paste0("<a href=\"packages/", pkg, "/index.html\">", pkg, "</a>")
+    
     tbl[i, 2] = descs[[i]]["Title"]
+    
     tags = descs[[i]]["HPCRAN"]
-    tbl[i, 3] = ifelse(is.na(tags), "", tags)
+    if (is.na(tags))
+      tags_fmt = ""
+    else
+    {
+      s = strsplit(tolower(tags), split=",")[[1]]
+      s = gsub(s, pattern="^ ", replacement="")
+      s = sub(s, pattern="blas", replacement="<span class=\"tag\" style=\"color:white;background-color:blue\">blas</span>")
+      s = sub(s, pattern="gpu", replacement="<span class=\"tag\" style=\"color:white;background-color:green\">gpu</span>")
+      s = sub(s, pattern="mpi", replacement="<span class=\"tag\" style=\"color:white;background-color:red\">mpi</span>")
+      tags_fmt = paste0(s, collapse=" ")
+    }
+    tbl[i, 3] = tags_fmt
   }
   
   mat_to_html_table(tbl)
@@ -59,28 +72,32 @@ packages_table = function(descs)
 
 package_table = function(i, descs)
 {
-  append = function(tbl, field)
+  append = function(tbl, field, fieldname=NULL)
   {
     x = descs[[i]][field]
     names(x) = NULL
+    
+    if (is.null(fieldname))
+      fieldname = field
+    
     if (!is.na(x))
-      rbind(tbl, c(field, x))
+      rbind(tbl, c(fieldname, x))
     else
       tbl
   }
   
   tbl = matrix("", 0, 2)
   
-  tbl = append(tbl, "Version")
-  tbl = append(tbl, "Depends")
-  tbl = append(tbl, "Imports")
   tbl = append(tbl, "Author")
   tbl = append(tbl, "Maintainer")
-  tbl = append(tbl, "BugReports")
+  tbl = append(tbl, "Version")
   tbl = append(tbl, "License")
+  tbl = append(tbl, "BugReports")
   tbl = append(tbl, "URL")
-  tbl = append(tbl, "NeedsCompilation")
+  tbl = append(tbl, "Depends")
+  tbl = append(tbl, "Imports")
   tbl = append(tbl, "SystemRequirements")
+  tbl = append(tbl, "NeedsCompilation")
   
   mat_to_html_table(tbl)
 }
@@ -114,12 +131,21 @@ generate_package_pages = function(root, descs)
   {
     pkg = descs[[i]]["Package"]
     
+    dir = paste0(root, "/www/packages/", pkg)
+    if (!dir.exists(dir))
+      dir.create(dir)
+    
     pre = readLines(paste0(root, "www/utils/pre.html"))
-    hdr = paste0("<h2>", pkg, ": ", descs[[i]]["Title"], "</h2>\n", descs[[i]]["Description"], "\n\n")
+    src = paste0(pkg, "_", descs[[i]]["Version"], ".tar.gz")
+    hdr = paste0(
+      "<h1>", pkg, ": ", descs[[i]]["Title"], "</h1>\n",
+      "<p class=\"lead\">", descs[[i]]["Description"], "</p>\n",
+      "<p class=\"lead\">Source: <a href=\"/src/contrib/", src, "\">", src, "</a></p>\n"
+    )
     tbl = capture.output(package_table(i, descs))
     pst = readLines(paste0(root, "www/utils/post.html"))
     
-    f = paste0(root, "/www/packages/", pkg, ".html")
+    f = paste0(dir, "/index.html")
     cat("<!--Automatically generated. Do not edit by hand-->\n\n", file=f, append=FALSE)
     cat(paste(pre, collapse="\n"), file=f, append=TRUE)
     cat(paste(hdr, collapse="\n"), file=f, append=TRUE)
