@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (!array_key_exists($ext, $allowed))
       die("ERROR: Please select a valid file format.");
     
-    $maxsize = 20 * 1000 * 1000;
+    $maxsize = 10 * 1000 * 1000;
     if ($filesize > $maxsize)
       die("ERROR: File size is larger than the allowed limit.");
     

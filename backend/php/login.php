@@ -29,7 +29,7 @@ if (session('access_token'))
   {
     echo '
     <form enctype="multipart/form-data" action="submit.php" method="POST">
-      Upload Package (max size 20MB)
+      Upload Package (max size 10MB)
       <br>
       <input name="package" type="file">
       <br>
