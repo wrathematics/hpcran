@@ -1,0 +1,52 @@
+<html>
+<body>
+
+<h1>HPCRAN Rules</h1>
+
+Last updated 2/17/2020.
+
+<h3>General</h3>
+<ol>
+  <li>You must login with your GitHub account and authenticate the OAuth app.</li>
+  <ul>
+    <li>The app reads your username and all emails, including private ones.</li>
+    <li>None of your email information is stored long term. It is only used for authentication.</li>
+    <li>None of your information is shared with any other party.</li>
+  </ul>
+  <li>Your GitHub account must be manually approved to upload packages. If you are interested in publishing packages on hpcran, please contact the administrator.</li>
+  <li>At least one <b>verified</b> email address on your GitHub account must match the maintainer email in package submission.</li>
+  <li>Packages should generally be HPC-related in some way. Non-HPC packages might be better suited for distribution on the <a href="https://cran.r-project.org/">CRAN</a> or <a href="https://www.bioconductor.org/">Bioconductor</a>.</li>
+</ol>
+
+<h3>Packages</h3>
+<ol>
+  <li>You do not have to ask permission to upload a package once your account is approved. Simply upload it.
+  <li>Uploaded packages must have been built with <code>R CMD build</code>, and as such should be valid <code>.tar.gz</code> source files.</li>
+  <li>Packages should be no more than 10MB in size. I hope to increase this limit eventually, but right now storage is at a premium.</li>
+  <li>You can set package tags for your package with the <code>HPCRAN</code> field in your package DESCRIPTION.</li>
+  <ul>
+    <li>Multiple tags (comma separated) can be used for a single package.</li>
+    <li>Please try to use tags accurately. Don't use <code>gpu</code> if your code doesn't use GPUs.</li>
+    <li>Don't use unprofessional language in the tags.</li>
+  </ul>
+  <li>There are no automated checks, and the usual CRAN checks may be too stringent for some HPC packages. That said, please try to satisfy as many CRAN check requirements as you can, as most of them are good.</li>
+</ol>
+
+<h3>Updates</h3>
+<ol>
+  <li>The updated package version must be greater than the previously published version.</li>
+  <li>Your <b>verified</b> GitHub email address must match the maintainer email address in the previously published package.</li>
+  <li>The maintainer email address in the package update must match the maintainer email address in the previously published version of the package.</li>
+  <li>If you need to change your maintainer email address on your package(s), please contact the administrator.</li>
+</ol>
+
+<h3>Enforcement</h3>
+Rules that can be automatically checked will be, and those violations will lead to an
+error in the upload process. In that case, simply fix the error and try again.
+Anti-social violation/circumventing of the rules may result in a ban from uploading
+packages to hpcran.
+<br><br>
+Contact: wrathematics at gmail.
+
+</body>
+</html>
