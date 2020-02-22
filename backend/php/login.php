@@ -17,16 +17,16 @@ if (session('access_token'))
   $response = apiRequest($apiURLBase. '/user');
   $ghun = $response->login;
   echo '<h3>Logged In as ' . $ghun . '</h3>';
-  $ghemails = apiRequest("https://api.github.com/user/emails");
-  #var_dump($ghemails[0]->{"email"});                                                   
-    
+  
   $db = new SQLite3(PROJ_ROOT . "uploaders.db");
   $authorized = authorized_users_lookup($db, $ghun);
   if (!$authorized)
     echo "<font color='red'>ERROR:</font> account is not able to publish packages on hpcran";
   else
   {
+    $ghemails = apiRequest("https://api.github.com/user/emails");
     $_SESSION['ghemails'] = $ghemails;
+    
     echo '
     <form enctype="multipart/form-data" action="submit.php" method="POST">
       Upload Package (max size 10MB)
