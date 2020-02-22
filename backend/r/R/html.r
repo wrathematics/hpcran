@@ -42,9 +42,20 @@ packages_table = function(descs)
     {
       s = strsplit(tolower(tags), split=",")[[1]]
       s = gsub(s, pattern="^ ", replacement="")
-      s = sub(s, pattern="blas", replacement="<span class=\"tag\" style=\"color:white;background-color:blue\">blas</span>")
-      s = sub(s, pattern="gpu", replacement="<span class=\"tag\" style=\"color:white;background-color:green\">gpu</span>")
-      s = sub(s, pattern="mpi", replacement="<span class=\"tag\" style=\"color:white;background-color:red\">mpi</span>")
+      s = s[which(nchar(s) <= 10)]
+      
+      s = sub(s, pattern="^blas$", replacement="<span class=\"tag\" style=\"color:white;background-color:blue\">blas</span>")
+      s = sub(s, pattern="^(gpu|cuda|hip)$", replacement="<span class=\"tag\" style=\"color:white;background-color:green\">gpu</span>")
+      s = sub(s, pattern="^mpi$", replacement="<span class=\"tag\" style=\"color:white;background-color:red\">mpi</span>")
+      
+      tags_lang = grep(s, pattern="^(c|c\\+\\+|fortran|java|go|rust)$")
+      if (length(s[tags_lang]) > 0)
+        s[tags_lang] = paste0("<span class=\"tag\" style=\"color:white;background-color:orange\">", s[tags_lang], "</span>")
+      
+      tags_main = grep(s, pattern="<span class=")
+      if (length(s[-tags_main]) > 0)
+        s[-tags_main] = paste0("<span class=\"tag\" style=\"color:white;background-color:grey\">", s[-tags_main], "</span>")
+      
       tags_fmt = paste0(s, collapse=" ")
     }
     tbl[i, 3] = tags_fmt
