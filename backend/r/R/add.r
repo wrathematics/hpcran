@@ -1,5 +1,7 @@
 add_package_internals = function(pkg, root="/hpcran/", emails=NULL)
 {
+  check_package(pkg)
+  
   packages = readRDS(paste0(root, "/src/contrib/PACKAGES.rds"))
   package_name = pkgname(pkg)
   
