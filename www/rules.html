@@ -3,7 +3,7 @@
 
 <h1>HPCRAN Rules</h1>
 
-Last updated 2/17/2020.
+Last updated 2/22/2020.
 
 <h3>General</h3>
 <ol>
@@ -21,12 +21,13 @@ Last updated 2/17/2020.
 <h3>Packages</h3>
 <ol>
   <li>You do not have to ask permission to upload a package once your account is approved. Simply upload it.
-  <li>Uploaded packages must have been built with <code>R CMD build</code>, and as such should be valid <code>.tar.gz</code> source files.</li>
+  <li>Uploaded packages must have been built with <b><code>R CMD build</code></b>, and as such should be valid <code>.tar.gz</code> source files.</li>
   <li>Packages should be no more than 10MB in size. I hope to increase this limit eventually, but right now storage is at a premium.</li>
   <li>You can set package tags for your package with the <code>HPCRAN</code> field in your package DESCRIPTION.</li>
   <ul>
     <li>Multiple tags (comma separated) can be used for a single package.</li>
-    <li>Please try to use tags accurately. Don't use <code>gpu</code> if your code doesn't use GPUs.</li>
+    <li>Tags have a 10 character limit. Tags longer than 10 characters will be ignored.</li>
+    <li>Please try to use tags accurately. For example, don't use <code>gpu</code> if your code doesn't use GPUs.</li>
     <li>Don't use unprofessional language in the tags.</li>
   </ul>
   <li>There are no automated checks, and the usual CRAN checks may be too stringent for some HPC packages. That said, please try to satisfy as many CRAN check requirements as you can, as most of them are good.</li>
