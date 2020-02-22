@@ -48,7 +48,6 @@
 <main role="main" class="container">
 <div class>
   <h1>Package Upload</h1>
-  <a href="rules.html" target="_blank">Please review the hpcran rules before submitting.</a>
 </div>
 
 <?php

@@ -34,7 +34,10 @@ if (session('access_token'))
       <input name="package" type="file">
       <br>
       <input type="submit" value="Upload">
+      <br>
       <input type="checkbox" required name="checkbox" value="check" id="agree">
+      I agree to abide by
+      <a href="/hpcran/www/rules.html" target="_blank">the HPCRAN rules</a>.
     </form>';
 
   }
