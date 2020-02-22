@@ -37,7 +37,7 @@ if (session('access_token'))
       <br>
       <input type="checkbox" required name="checkbox" value="check" id="agree">
       I agree to abide by
-      <a href="/hpcran/www/rules.html" target="_blank">the HPCRAN rules</a>.
+      <a href="rules.html" target="_blank">the HPCRAN rules</a>.
     </form>';
 
   }
