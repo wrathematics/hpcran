@@ -22,9 +22,9 @@ Last updated 2/22/2020.
 <h3>Packages</h3>
 <ol>
   <li>You do not have to ask permission to upload a package once your account is approved. Simply upload it.
-  <li>Uploaded packages must have been built with <b><code>R CMD build</code></b>, and as such should be valid <code>.tar.gz</code> source files.</li>
+  <li>Uploads should be sources packages that have been built with <b><code>R CMD build</code></b>, and as such should be valid <code>.tar.gz</code> source files.</li>
   <li>Packages should be no more than 10MB in size. I hope to increase this limit eventually, but right now storage is at a premium.</li>
-  <li>You can set package tags for your package with the <code>HPCRAN</code> field in your package DESCRIPTION.</li>
+  <li>You can set tags for your package with the <code>HPCRAN</code> field in your package DESCRIPTION.</li>
   <ul>
     <li>Multiple tags (comma separated) can be used for a single package.</li>
     <li>Tags have a 10 character limit. Tags longer than 10 characters will be ignored.</li>
@@ -44,7 +44,7 @@ Last updated 2/22/2020.
 
 <h3>Legal</h3>
 <ol>
-  <li>Packages should be licensed under an <a href="https://opensource.org/licenses/alphabetical">OSI approved license</a>.</li>
+  <li>Packages should be licensed under an <a href="https://opensource.org/licenses/alphabetical">OSI approved open source license</a>.</li>
   <li>Packages should not violate anyone's intellectual property rights.</li>
   <li>Code and documentation should respect copyrights and trademarks.</li>
   <ul>
@@ -55,7 +55,7 @@ Last updated 2/22/2020.
   <li>Packages should not do anything malicious or anti-social.</li>
   <ul>
     <li>Viruses, forkbombs, trojans, and the like are all completely unacceptable.</li>
-    <li>Packages should not collect any data without consent from the user.</li>
+    <li>Packages should not collect any data transmitted to a third party without consent from the user.</li>
     <li>Calling something that kills the R process (e.g. <code>assert()</code>, <code>exit()</code>, etc) are fine so long as it is clearly documented.</li>
     <li>Modifying the global environment is discouraged, but acceptable.</li>
   </ul>
