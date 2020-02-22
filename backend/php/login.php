@@ -16,7 +16,7 @@ if (session('access_token'))
 {
   $response = apiRequest($apiURLBase. '/user');
   $ghun = $response->login;
-  echo '<h3>Logged In as ' . $ghun . '</h3>';
+  echo '<h4>Logged in as ' . $ghun . '</h4>';
   
   $db = new SQLite3(PROJ_ROOT . "uploaders.db");
   $authorized = authorized_users_lookup($db, $ghun);
