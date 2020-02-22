@@ -7,6 +7,7 @@ Last updated 2/22/2020.
 
 <h3>General</h3>
 <ol>
+  <li>HPCRAN is for "publication quality" packages.</li>
   <li>You must login with your GitHub account and authenticate the OAuth app.</li>
   <ul>
     <li>The app reads your username and all emails, including private ones.</li>
@@ -39,6 +40,25 @@ Last updated 2/22/2020.
   <li>Your <b>verified</b> GitHub email address must match the maintainer email address in the previously published package.</li>
   <li>The maintainer email address in the package update must match the maintainer email address in the previously published version of the package.</li>
   <li>If you need to change your maintainer email address on your package(s), please contact the administrator.</li>
+</ol>
+
+<h3>Legal</h3>
+<ol>
+  <li>Packages should be licensed under an <a href="https://opensource.org/licenses/alphabetical">OSI approved license</a>.</li>
+  <li>Packages should not violate anyone's intellectual property rights.</li>
+  <li>Code and documentation should respect copyrights and trademarks.</li>
+  <ul>
+    <li>This means, among other things, adding copyright and trademark symbols, as appropriate.</li>
+    <li>For example, if you wish to refer to a certain GPU manufacturer's programming API, the correct way would be NVIDIA&#169; CUDA&#8482;.</li>
+    <li>I know that this is dumb, but I don't want either of us to be sued.</li>
+  </ul>
+  <li>Packages should not do anything malicious or anti-social.</li>
+  <ul>
+    <li>Viruses, forkbombs, trojans, and the like are all completely unacceptable.</li>
+    <li>Packages should not collect any data without consent from the user.</li>
+    <li>Calling something that kills the R process (e.g. <code>assert()</code>, <code>exit()</code>, etc) are fine so long as it is clearly documented.</li>
+    <li>Modifying the global environment is discouraged, but acceptable.</li>
+  </ul>
 </ol>
 
 <h3>Enforcement</h3>
