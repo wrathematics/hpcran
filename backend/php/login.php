@@ -46,5 +46,5 @@ else
 {
   echo '<h4>Not logged in</h4>';
   echo '<p><a href="?action=login">Log In with GitHub</a></p>';
-  echo '<p>Please review <a href="rules.html" target="_blank">the HPCRAN rules</a>.</p>';
+  echo '<p>Please review <a href="rules.html" target="_blank">the HPCRAN rules</a> before proceeding.</p>';
 }
