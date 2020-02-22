@@ -20,27 +20,38 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="/index.html"><img src="/ui/img/hpcran.png" style="width:75px; margin-bottom:7px;" alt="HPCRAN"></a>
+  <a class="navbar-brand"><img src="/ui/img/hpcran.png" style="width:75px; margin-bottom:7px;" alt="HPCRAN"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">About</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="packages.html">Packages</a>
       </li>
     </ul>
-  </div>  
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="upload.php">Upload</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <main role="main" class="container">
   <div class>
     <h1>About</h1>
     <p class="lead">
-      <b>HPCRAN</b> is an R Archive Network for HPC packages.
+      <b>HPCRAN</b> is an R Archive Network, or software repository, for
+      HPC packages for the
+      <a href="https://www.r-project.org/">R programming language</a>.
     </p>
     
-    <h3>Installing HPCRAN Packages</h3>
     <p class="lead">
       You can install an <b>HPCRAN</b> package via the usual
       <code>install.packages()</code> if you set the <code>repos</code> argument
@@ -64,17 +75,36 @@
       Some packages, such as those that make use of GPUs, may not be installable
       on non-Linux platforms.
     </p>
-  </div>
+    
+    <br>
+    <h3>Warranty and Disclaimer</h3>
+    <p class="lead">
+    Packages distributed by <b>HPCRAN</b> are not endorsed by the hpcran
+    team or its contributors. We make no warranties of any kind, express
+    or implied, about packages distributed by <b>HPCRAN</b>.
+    </p>
+
+    <p class="lead">
+    Packages contributed to hpcran are provided "as is", and are not
+    manually inspected. We take no responsibility for any packages
+    distributed here. If you believe that a package contains malicious
+    code, violates someone's intellectual property rights, or is
+    otherwise anti-social, please contact wrathematics at gmail.
+    </p>
   
-  <br>
-  <div class="raw bg-info">
-    HPCRAN logo is modified from the
+    <p class="lead">
+    The <b>HPCRAN</b> logo is modified from the
     <a href="https://www.r-project.org/logo/">R logo</a>,
     and is licensed
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
-    For questions, please contact wrathematics at gmail.
+    </p>
+  </div>
+  
+  <div class="raw">
+  Copyright &#169; 2020 <b>HPCRAN</b> team. All rights reserved.
   </div>
 </main>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -1,29 +1,14 @@
 <?php
 $uploaddir = '/tmp/';
 
-function get_pkg_email($pkg)
-{
-  #$cmd = 
-}
+session_start();
 
-function is_email_in_ghemails($pkg_sub_email, $ghemails)
-{
-  for ($i=0; $i<count($ghemails); $i++)
-  {
-    if ($pkg_sub_email == $ghemails[$i]->{"email"})
-      return True;
-  }
-
-  return False;
-}
-
-
-
+# heavily modified from https://www.tutorialrepublic.com/php-tutorial/php-file-upload.php
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  if(isset($_FILES["package"]) && $_FILES["package"]["error"] == 0)
+  if (isset($_FILES["package"]) && $_FILES["package"]["error"] == 0)
   {
-    $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+    $allowed = array("gz" => "application/gzip");
     $filename = $_FILES["package"]["name"];
     $filetype = $_FILES["package"]["type"];
     $filesize = $_FILES["package"]["size"];
@@ -37,22 +22,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       die("ERROR: File size is larger than the allowed limit.");
     
     // Verify MYME type of the file
-    if(in_array($filetype, $allowed))
+    if (in_array($filetype, $allowed))
     {
-      if(file_exists($uploaddir . $filename))
-        echo "ERROR: " . $filename . " already in staging area";
+      if (file_exists($uploaddir . $filename))
+        die("ERROR: " . $filename . " already in staging area");
       else
       {
         move_uploaded_file($_FILES["package"]["tmp_name"], $uploaddir . $filename);
         echo "Package uploaded successfully.";
         echo "<br>File name: " . $filename;
         echo "<br>File size: " . $filesize;
-      } 
+        
+        $rcmd = "Rscript -e 'args = commandArgs(trailingOnly=TRUE);
+        hpcran::add_package(\"" . $uploaddir . $filename . "\", root=\"/hpcran/\", emails=args)'";
+        
+        for ($i=0; $i<count($_SESSION['ghemails']); $i++)
+        {
+          if ($_SESSION['ghemails'][$i]->{"verified"})
+            $rcmd = $rcmd . " " . $_SESSION['ghemails'][$i]->{"email"};
+        }
+
+        $rcmd = $rcmd . " 2>&1";
+        
+        echo "<br><br>";
+        $errmsg = system($rcmd);
+      }
     }
     else
-      echo "ERROR: There was a problem uploading your file. Please try again."; 
+      die("ERROR: There was a problem uploading your file. Please try again.");
   }
   else
-    echo "ERROR: " . $_FILES["package"]["error"];
+    die("ERROR: " . $_FILES["package"]["error"]);
 }
+
 ?>

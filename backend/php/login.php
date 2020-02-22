@@ -18,8 +18,7 @@ if (session('access_token'))
   $ghun = $response->login;
   echo '<h3>Logged In as ' . $ghun . '</h3>';
   $ghemails = apiRequest("https://api.github.com/user/emails");
-  var_dump($ghemails[0]->{"email"});                                                   
-  var_dump($ghemails);
+  #var_dump($ghemails[0]->{"email"});                                                   
     
   $db = new SQLite3(PROJ_ROOT . "uploaders.db");
   $authorized = authorized_users_lookup($db, $ghun);
@@ -27,6 +26,7 @@ if (session('access_token'))
     echo "<font color='red'>ERROR:</font> account is not able to publish packages on hpcran";
   else
   {
+    $_SESSION['ghemails'] = $ghemails;
     echo '
     <form enctype="multipart/form-data" action="submit.php" method="POST">
       Upload Package (max size 10MB)
@@ -34,6 +34,7 @@ if (session('access_token'))
       <input name="package" type="file">
       <br>
       <input type="submit" value="Upload">
+      <input type="checkbox" required name="checkbox" value="check" id="agree">
     </form>';
 
   }
@@ -43,4 +44,3 @@ else
   echo '<h3>Not logged in</h3>';
   echo '<p><a href="?action=login">Log In with GitHub</a></p>';
 }
-
