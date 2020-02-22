@@ -52,6 +52,10 @@ packages_table = function(descs)
       if (length(s[tags_lang]) > 0)
         s[tags_lang] = paste0("<span class=\"tag\" style=\"color:white;background-color:orange\">", s[tags_lang], "</span>")
       
+      tags_os = grep(s, pattern="^(linux|windows|mac)$")
+      if (length(s[tags_os]) > 0)
+        s[tags_os] = paste0("<span class=\"tag\" style=\"color:white;background-color:purple\">", s[tags_os], "</span>")
+      
       tags_main = grep(s, pattern="<span class=")
       if (length(s[-tags_main]) > 0)
         s[-tags_main] = paste0("<span class=\"tag\" style=\"color:white;background-color:grey\">", s[-tags_main], "</span>")
