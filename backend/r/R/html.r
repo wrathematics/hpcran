@@ -47,6 +47,8 @@ packages_table = function(descs)
       s = sub(s, pattern="^blas$", replacement="<span class=\"tag\" style=\"color:white;background-color:blue\">blas</span>")
       s = sub(s, pattern="^(gpu|cuda|hip)$", replacement="<span class=\"tag\" style=\"color:white;background-color:green\">gpu</span>")
       s = sub(s, pattern="^mpi$", replacement="<span class=\"tag\" style=\"color:white;background-color:red\">mpi</span>")
+      s = sub(s, pattern="^io$", replacement="<span class=\"tag\" style=\"color:white;background-color:black\">io</span>")
+      s = sub(s, pattern="^(timing|benchmark)$", replacement="<span class=\"tag\" style=\"color:white;background-color:#00d3e2\">timing</span>")
       
       tags_lang = grep(s, pattern="^(c|c\\+\\+|fortran|java|go|rust)$")
       if (length(s[tags_lang]) > 0)
