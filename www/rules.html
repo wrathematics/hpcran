@@ -3,7 +3,7 @@
 
 <h1>HPCRAN Rules</h1>
 
-Last updated 2/22/2020.
+Last updated 5/18/2021.
 
 <h3>General</h3>
 <ol>
@@ -31,7 +31,8 @@ Last updated 2/22/2020.
     <li>Please try to use tags accurately. For example, don't use <code>gpu</code> if your code doesn't use GPUs.</li>
     <li>Don't use unprofessional language in the tags.</li>
   </ul>
-  <li>There are no automated checks, and the usual CRAN checks may be too stringent for some HPC packages. That said, please try to satisfy as many CRAN check requirements as you can, as most of them are good.</li>
+  <li>Packages are not automatically checked with <code>R CMD check</code>, as the usual CRAN checks may be too stringent for some HPC packages. That said, please run <code>R CMD check</code> on your package before submitting, and try to satisfy as many CRAN check requirements as you can, as most of them are good.</li>
+  <li>Consider including a README or README.md file that includes installation instructions for your package. This file will be rendered and linked on your package page.</li>
 </ol>
 
 <h3>Updates</h3>
