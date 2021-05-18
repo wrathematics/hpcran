@@ -55,8 +55,8 @@
     <p class="lead">
       You can install an <b>HPCRAN</b> package via the usual
       <code>install.packages()</code> if you set the <code>repos</code> argument
-      to <code>https://hpcran.org</code>. However, some packages have CRAN
-      dependencies, so we recommend something like this:
+      to <code>https://hpcran.org</code>. However, some <b>HPCRAN</b> packages
+      have CRAN dependencies, so we recommend something like this:
     </p>
     <pre><code>
       options(repos=structure(c(
@@ -74,6 +74,40 @@
       You will of course need to be able to build packages from source.
       Some packages, such as those that make use of GPUs, may not be installable
       on non-Linux platforms.
+    </p>
+    
+    <br>
+    <h3>Why HPCRAN?</h3>
+    <p class="lead">
+    <b>HPCRAN</b> is an R package archive specifically for HPC packages, in
+    contrast to the CRAN which is the <i>comprehensive</i> package archive. The
+    CRAN is meant for packages with a fairly universal appeal. However, software
+    designed for HPC environments often won't work on Windows/Mac, or uses
+    boutique hardware like
+    <a href="https://en.wikipedia.org/wiki/Gpgpu">GPUs</a>,
+    or strange software like
+    <a href="https://en.wikipedia.org/wiki/Message_Passing_Interface">MPI</a>,
+    or uses programming models unknown to the outside world like
+    <a href="https://en.wikipedia.org/wiki/SPMD">SPMD</a>.
+    </p>
+    
+    <p class="lead">
+    Packages with exactly one of these kinds of qualities <i>might</i> be
+    allowed onto CRAN with a special exception to the CRAN rules. In order to
+    distribute their packages on CRAN, HPC package authors are sometimes forced
+    to ship entire copies of standard HPC libraries to the CRAN in order to
+    conform &mdash; which for the record is completely insane. Packages with
+    multiple of these qualities will likely be turned away, and even
+    already-published packages may be kicked off the CRAN as their publishing
+    standards continually increase.
+    </p>
+    
+    <p class="lead">
+    While increasingly stringent rules for publishing on CRAN are ultimately a
+    good thing on average, it makes publishing HPC packages unreasonably
+    difficult for the reasons outlined above. The <b>HPCRAN</b> is meant to give
+    HPC package authors for R a CRAN-like place to publish packages which would
+    otherwise be a good fit for CRAN, were the rules not so stringent.
     </p>
     
     <br>
@@ -97,11 +131,13 @@
     <a href="https://www.r-project.org/logo/">R logo</a>,
     and is licensed
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.
+    Most of the <b>HPCRAN</b> internals are available
+    <a href="https://github.com/wrathematics/hpcran">here</a>.
     </p>
   </div>
   
   <div class="raw">
-  Copyright &#169; 2020 <b>HPCRAN</b> team. All rights reserved.
+  Copyright &#169; 2020-2021 <b>HPCRAN</b> team. All rights reserved.
   </div>
 </main>
 
